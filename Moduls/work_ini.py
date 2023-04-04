@@ -1,7 +1,7 @@
 import configparser
 
 config = configparser.ConfigParser()
-config.read(r"\LR BD new\Settings\default_settigs.ini")
+config.read(r"\LR-BD-new\Settings\default_settigs.ini")
 
 def get_db_link():
     return config["db"]["db_link"]
