@@ -649,25 +649,6 @@ class Ui_Form(object):
         self.comboBox_9 = QComboBox(self.groupBox_6)
         self.comboBox_9.setObjectName(u"comboBox_9")
         self.comboBox_9.setGeometry(QRect(510, 70, 191, 22))
-        self.comboBox_10 = QComboBox(self.groupBox_6)
-        self.comboBox_10.setObjectName(u"comboBox_10")
-        self.comboBox_10.setGeometry(QRect(1100, 20, 241, 22))
-        self.lineEdit_10 = QLineEdit(self.groupBox_6)
-        self.lineEdit_10.setObjectName(u"lineEdit_10")
-        self.lineEdit_10.setGeometry(QRect(1010, 16, 80, 30))
-        self.lineEdit_10.setFont(font5)
-        self.lineEdit_10.setStyleSheet(u"QLineEdit {\n"
-"  border-radius: 8px;\n"
-"  border: 1px solid #e0e4e7;\n"
-"  padding: 5px 15px;\n"
-"}\n"
-"QLineEdit:focus {\n"
-"  border: 1px solid #d0e3ff;\n"
-"}\n"
-"QLineEdit::placeholder {\n"
-"  color: #767e89;\n"
-"}")
-        self.lineEdit_10.setReadOnly(True)
         self.pushButton_10 = QPushButton(self.groupBox_6)
         self.pushButton_10.setObjectName(u"pushButton_10")
         self.pushButton_10.setGeometry(QRect(1180, 60, 151, 31))
@@ -2201,7 +2182,7 @@ class Ui_Form(object):
 
         self.retranslateUi(Form)
 
-        self.tabWidget.setCurrentIndex(8)
+        self.tabWidget.setCurrentIndex(3)
 
 
         QMetaObject.connectSlotsByName(Form)
@@ -2278,7 +2259,6 @@ class Ui_Form(object):
         self.lineEdit_7.setText(QCoreApplication.translate("Form", u"\u0422\u0430\u0431\u043b\u0438\u0446\u044b", None))
         self.lineEdit_8.setText(QCoreApplication.translate("Form", u"\u0413\u0440\u0443\u043f\u043f\u044b", None))
         self.lineEdit_9.setText(QCoreApplication.translate("Form", u"\u0422\u0438\u043f \u043e\u0431\u0443\u0447\u0435\u043d\u0438\u044f", None))
-        self.lineEdit_10.setText(QCoreApplication.translate("Form", u"\u041e\u0442\u0447\u0451\u0442\u044b", None))
         self.pushButton_10.setText(QCoreApplication.translate("Form", u"\u0421\u043e\u0437\u0434\u0430\u0442\u044c \u043e\u0442\u0447\u0451\u0442", None))
         self.lineEdit_17.setText(QCoreApplication.translate("Form", u"\u0422\u0438\u043f \u043e\u0431\u0443\u0447\u0435\u043d\u0438\u044f", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.change), QCoreApplication.translate("Form", u"\u0420\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435", None))

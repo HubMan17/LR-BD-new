@@ -27,6 +27,9 @@ class FirtsInitialize(QtWidgets.QWidget):
         self.ui.lineEdit_9.setVisible(False)
         self.ui.comboBox_9.setVisible(False)  
         
+        self.ui.lineEdit_17.setVisible(False)
+        self.ui.comboBox_11.setVisible(False)
+        
         
     
     def setup_icon(self):

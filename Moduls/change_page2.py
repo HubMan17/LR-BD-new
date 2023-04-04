@@ -25,6 +25,7 @@ import UI.add_teach_disc_ui
 import UI.more_info_qexam_ui
 import UI.add_exam_ui
 import UI.change_qexam_ui
+import UI.report_stud_ui
 
 
 class ChangePage2(QtWidgets.QWidget):
@@ -56,28 +57,33 @@ class ChangePage2(QtWidgets.QWidget):
 
     def create_rep(self):
         table = self.ui.comboBox_7.currentText()
-        rep = self.ui.comboBox_10.currentText()
         
         if table == "Студенты":
-            id = int(self.ui.tableWidget_3.item(self.ui.tableWidget_3.currentRow(), 0).text())
-            
-            data = Student.select().join(Group).join(Spec).where(Student.id == id).get()
 
-            if rep == "Справка об обучении":
-                
-                def bp():
-                    student = str(data.fname).title() + " " + str(data.lname).title()
-                    spec_name = data.groupid.specid.name
-                    date = str(data.enrollment).split('-')
+            def bp():
+                rep = self.ui_choice.comboBox_7.currentText()
+
+                student = self.ui_choice.comboBox_6.currentText().split(" ")
+                data_student = Student.select().join(Group).join(Spec) \
+                    .where(
+                        Student.fname==student[0], Student.lname==student[1]
+                    ) \
+                    .get()
+
+                if rep == "Справка об обучении":
+
+                    student_fname_lname = str(data_student.fname).title() + " " + str(data_student.lname).title()
+                    spec_name = data_student.groupid.specid.name
+                    date = str(data_student.enrollment).split('-')
                     open_status = self.ui_choice.checkBox.isChecked()
                     print_status = self.ui_choice.checkBox_2.isChecked()
                     pdf_status = self.ui_choice.checkBox_3.isChecked()
                     email_status = self.ui_choice.checkBox_4.isChecked()
             
                                 
-                    about_student(student=student,
+                    about_student(student=student_fname_lname,
                                 date=datetime.date(int(date[0]), int(date[1]), int(date[2])).strftime("%d.%m.%Y"),
-                                spec=spec_name, id_rep=id,
+                                spec=spec_name, id_rep=data_student.id,
                                 open_status=open_status, print_status=print_status,
                                 pdf_status=pdf_status, email_status=email_status,
                                 more_stud_status=False)
@@ -86,27 +92,18 @@ class ChangePage2(QtWidgets.QWidget):
                     
                     self.ui.textEdit.setText(self.ui.textEdit.toPlainText() + f"{datetime.datetime.now()}\tОтчёт №{id} успешно создан!\n")
                     self.ui.textEdit.moveCursor(QtGui.QTextCursor.End)
-                
-                
-                self.add_data_window = QtWidgets.QWidget()
-                self.ui_choice = UI.report_more_func_ui.Ui_Form()
-                self.ui_choice.setupUi(self.add_data_window)
-                self.add_data_window.show() 
-                self.ui_choice.pushButton.clicked.connect(bp)
-                
-                
-            elif rep == "Карточка студента":
-                
-                def bp():
-                    lname = data.lname.title()
-                    fname = data.fname.title()
-                    enroll = str(data.enrollment).split('-')
-                    group = data.groupid.name
-                    spec = data.groupid.specid.name
-                    id_rep = id
-                    diplom = int(data.diplom)
-                    status = data.status.title()
-                    course = data.groupid.course
+                    
+                elif rep == "Карточка студента":
+
+                    lname = data_student.lname.title()
+                    fname = data_student.fname.title()
+                    enroll = str(data_student.enrollment).split('-')
+                    group = data_student.groupid.name
+                    spec = data_student.groupid.specid.name
+                    id_rep = data_student.id
+                    diplom = int(data_student.diplom)
+                    status = data_student.status.title()
+                    course = data_student.groupid.course
                     open_status = self.ui_choice.checkBox.isChecked()
                     print_status = self.ui_choice.checkBox_2.isChecked()
                     pdf_status = self.ui_choice.checkBox_3.isChecked()
@@ -120,15 +117,43 @@ class ChangePage2(QtWidgets.QWidget):
                                 pdf_status=pdf_status, email_status=email_status,
                                 more_stud_status=False)
                     
-                    self.ui.textEdit.setText(self.ui.textEdit.toPlainText() + f"{datetime.datetime.now()}\tОтчёт №{id} успешно создан!\n")
+                    self.ui.textEdit.setText(self.ui.textEdit.toPlainText() + f"{datetime.datetime.now()}\tОтчёт №{id_rep} успешно создан!\n")
                     self.ui.textEdit.moveCursor(QtGui.QTextCursor.End)
                     self.add_data_window.close()
                 
-                self.add_data_window = QtWidgets.QWidget()
-                self.ui_choice = UI.report_more_func_ui.Ui_Form()
-                self.ui_choice.setupUi(self.add_data_window)
-                self.add_data_window.show() 
-                self.ui_choice.pushButton.clicked.connect(bp)
+                
+            self.add_data_window = QtWidgets.QWidget()
+            self.ui_choice = UI.report_stud_ui.Ui_Form()
+            self.ui_choice.setupUi(self.add_data_window)
+            self.add_data_window.show() 
+            self.ui_choice.pushButton_3.clicked.connect(bp)
+            
+            
+            def bp_change():
+                group_name = self.ui_choice.comboBox_5.currentText()
+                
+                self.ui_choice.comboBox_6.blockSignals(True)
+                
+                self.ui_choice.comboBox_6.clear()
+                self.ui_choice.comboBox_6.addItem("<--Не выбрана-->")
+                students = Student.select(Student.fname, Student.lname).join(Group).where(Group.name == group_name)
+                self.ui_choice.comboBox_6.addItems([f"{i.fname} {i.lname}" for i in students])
+                
+                self.ui_choice.comboBox_6.blockSignals(False)
+            
+            
+            if not [self.ui_choice.comboBox_5.itemText(i) for i in range(self.ui_choice.comboBox_5.count())]:
+                self.ui_choice.comboBox_5.addItem("<--Не выбрана-->")
+                groups = Group.select(Group.name)
+                self.ui_choice.comboBox_5.addItems([i.name for i in groups])
+                
+            if not [self.ui_choice.comboBox_6.itemText(i) for i in range(self.ui_choice.comboBox_6.count())]:
+                self.ui_choice.comboBox_6.addItem("<--Не выбрана-->")
+                
+            self.ui_choice.comboBox_5.currentTextChanged.connect(bp_change)
+                
+            list_of_reports = ["<--Не выбран-->", "Карточка студента", "Справка об обучении"]
+            self.ui_choice.comboBox_7.addItems(list_of_reports)
 
 
         elif table == "Группы":
@@ -140,6 +165,7 @@ class ChangePage2(QtWidgets.QWidget):
                 print_status = self.ui_choice.checkBox_2.isChecked()
                 pdf_status = self.ui_choice.checkBox_3.isChecked()
                 email_status = self.ui_choice.checkBox_4.isChecked()
+                rep = self.ui_choice.comboBox_2.currentText()
 
                 cur_data = ""
                 if rep == "Задолжность по группе":
@@ -186,6 +212,9 @@ class ChangePage2(QtWidgets.QWidget):
                     data.append(i.name)
                 
                 self.ui_choice.comboBox.addItems(data)
+            
+            list_of_rep = ["<--Не выбран-->", "Задолжность по группе", "Наполнение группы"]
+            self.ui_choice.comboBox_2.addItems(list_of_rep)
             
             self.ui_choice.pushButton.clicked.connect(bp)
 
@@ -1884,6 +1913,9 @@ class ChangePage2(QtWidgets.QWidget):
             self.ui.lineEdit_9.setVisible(False)
             self.ui.comboBox_9.setVisible(False) 
             
+            self.ui.lineEdit_17.setVisible(False)
+            self.ui.comboBox_11.setVisible(False)
+            
             with db:
                 spec = Spec.select()
             column_list = ["id", "name", "price"]
@@ -2053,6 +2085,9 @@ class ChangePage2(QtWidgets.QWidget):
         
         elif self.ui.comboBox_7.currentText() == "Преподаватели":
             
+            self.ui.lineEdit_17.setVisible(False)
+            self.ui.comboBox_11.setVisible(False)
+            
             self.ui.tableWidget_3.clear()
             self.ui.tableWidget_3.setRowCount(0)
             self.ui.tableWidget_3.setColumnCount(0)
@@ -2080,6 +2115,9 @@ class ChangePage2(QtWidgets.QWidget):
                 count += 1
                 
         elif self.ui.comboBox_7.currentText() == "Дисциплины":
+            
+            self.ui.lineEdit_17.setVisible(False)
+            self.ui.comboBox_11.setVisible(False)
             
             self.ui.tableWidget_3.clear()
             self.ui.tableWidget_3.setRowCount(0)
@@ -2559,6 +2597,9 @@ class ChangePage2(QtWidgets.QWidget):
         
         elif self.ui.comboBox_7.currentText() == "Группы":
             
+            self.ui.lineEdit_17.setVisible(False)
+            self.ui.comboBox_11.setVisible(False)
+            
             self.ui.comboBox_10.clear()
             if not [self.ui.comboBox_10.itemText(i) for i in range(self.ui.comboBox_10.count())]: 
                 self.ui.comboBox_10.addItems(["<--Не выбран-->", "Задолжность по группе", "Наполнение группы"])
@@ -2618,6 +2659,9 @@ class ChangePage2(QtWidgets.QWidget):
                 count += 1
                 
         elif self.ui.comboBox_7.currentText() == "Студенты":
+            
+            self.ui.lineEdit_17.setVisible(False)
+            self.ui.comboBox_11.setVisible(False)
             
             self.ui.comboBox_10.clear()
             if not [self.ui.comboBox_10.itemText(i) for i in range(self.ui.comboBox_10.count())]: 
@@ -2683,6 +2727,9 @@ class ChangePage2(QtWidgets.QWidget):
         elif self.ui.comboBox_7.currentText() == "Приказы":
             self.ui.comboBox_10.clear()
             
+            self.ui.lineEdit_17.setVisible(False)
+            self.ui.comboBox_11.setVisible(False)
+            
             self.ui.lineEdit_8.setVisible(True)
             self.ui.lineEdit_8.setText("Причина")
             self.ui.comboBox_8.setVisible(True)
@@ -2720,6 +2767,9 @@ class ChangePage2(QtWidgets.QWidget):
                 
         elif self.ui.comboBox_7.currentText() == "Архив":
             self.ui.comboBox_10.clear()
+            
+            self.ui.lineEdit_17.setVisible(False)
+            self.ui.comboBox_11.setVisible(False)
             
             self.ui.lineEdit_8.setVisible(True)
             self.ui.lineEdit_8.setText("Специальность")

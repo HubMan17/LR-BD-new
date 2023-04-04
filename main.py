@@ -14,9 +14,6 @@ from Moduls.settings import Settig
 from Moduls.stats_page import StatPage
 from Moduls.FAQ_page import FAQPage
 
-
-prisds
-
 class ui_Interface(QtWidgets.QWidget, Ui_Form):
     
     def __init__(self):
@@ -36,12 +33,8 @@ class ui_Interface(QtWidgets.QWidget, Ui_Form):
         self.first_start()
         self.auth()
 
-
-        
         # self.textBrowser.document().setHtml(r"""My image :<br /><img src="pngwing.png"/>""")
 
-        
-        
 
         # self.mytext.moveCursor(QtGui.QTextCursor.End)
         # self.textEdit.setText(self.textEdit.toPlainText() + "{datetime.now()} start2\n")

@@ -103,13 +103,13 @@ class Auth(QtWidgets.QWidget):
         
     def open_file(self):
         config = configparser.ConfigParser()  # создаём объекта парсера
-        config.read(r"\LR-BD-new\Settings\user_db.ini")
+        config.read(r"\LR BD new\Settings\user_db.ini")
         return config
     
     
     def delete_section(self, key):
         config = configparser.ConfigParser()  # создаём объекта парсера
-        with open(r"\LR-BD-new\Settings\user_db.ini", 'r+') as s:
+        with open(r"\LR BD new\Settings\user_db.ini", 'r+') as s:
             config.read_file(s)  # File position changed (it's at the end of the file)
             config.remove_section(key)
             s.seek(0)  # <-- Change the file position to the beginning of the file
@@ -118,12 +118,12 @@ class Auth(QtWidgets.QWidget):
     
     
     def write_file(self, data):
-        with open(r"\LR-BD-new\Settings\user_db.ini", 'a') as f:
+        with open(r"\LR BD new\Settings\user_db.ini", 'a') as f:
             f.writelines(data)
             
             
     def change_data(self, data):
-        with open(r"\LR-BD-new\Settings\user_db.ini", 'w') as configfile:
+        with open(r"\LR BD new\Settings\user_db.ini", 'w') as configfile:
             data.write(configfile)
             
     

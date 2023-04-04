@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>741</width>
+    <width>716</width>
     <height>165</height>
    </rect>
   </property>
@@ -16,7 +16,7 @@
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>0</x>
+     <x>10</x>
      <y>10</y>
      <width>401</width>
      <height>141</height>
@@ -29,7 +29,7 @@
     <property name="geometry">
      <rect>
       <x>130</x>
-      <y>40</y>
+      <y>20</y>
       <width>261</width>
       <height>22</height>
      </rect>
@@ -52,7 +52,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>40</y>
+      <y>20</y>
       <width>113</width>
       <height>22</height>
      </rect>
@@ -64,6 +64,37 @@
     </property>
     <property name="text">
      <string>Группа</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_2">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>60</y>
+      <width>261</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>113</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Отчёт</string>
     </property>
     <property name="readOnly">
      <bool>true</bool>

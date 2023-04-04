@@ -22,10 +22,10 @@ class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(225, 217)
+        Form.resize(273, 296)
         self.groupBox_2 = QGroupBox(Form)
         self.groupBox_2.setObjectName(u"groupBox_2")
-        self.groupBox_2.setGeometry(QRect(10, 10, 201, 141))
+        self.groupBox_2.setGeometry(QRect(20, 50, 201, 141))
         self.checkBox = QCheckBox(self.groupBox_2)
         self.checkBox.setObjectName(u"checkBox")
         self.checkBox.setGeometry(QRect(10, 10, 161, 20))
@@ -46,7 +46,7 @@ class Ui_Form(object):
         self.checkBox_4.setFont(font)
         self.pushButton = QPushButton(Form)
         self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QRect(80, 160, 131, 51))
+        self.pushButton.setGeometry(QRect(30, 210, 141, 51))
 
         self.retranslateUi(Form)
 
