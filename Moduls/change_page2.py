@@ -1905,7 +1905,7 @@ class ChangePage2(QtWidgets.QWidget):
     def show_table(self):
         
         if self.ui.comboBox_7.currentText() == "Специальности":
-            self.ui.comboBox_10.clear()
+            # self.ui.comboBox_10.clear()
             
             self.ui.lineEdit_8.setVisible(False)
             self.ui.comboBox_8.setVisible(False)
@@ -1934,7 +1934,7 @@ class ChangePage2(QtWidgets.QWidget):
                 count += 1
                 
         elif self.ui.comboBox_7.currentText() == "Квалификационный экзамен":
-            self.ui.comboBox_10.clear()
+            # self.ui.comboBox_10.clear()
             
             self.ui.lineEdit_8.setVisible(False)
             self.ui.comboBox_8.setVisible(False)
@@ -1969,7 +1969,7 @@ class ChangePage2(QtWidgets.QWidget):
             self.ui.tableWidget_3.setRowCount(0)
             self.ui.tableWidget_3.setColumnCount(0)
             
-            self.ui.comboBox_10.clear()
+            # self.ui.comboBox_10.clear()
             
             self.ui.lineEdit_8.setVisible(True)
             self.ui.lineEdit_8.setText("Специальность")
@@ -2600,9 +2600,9 @@ class ChangePage2(QtWidgets.QWidget):
             self.ui.lineEdit_17.setVisible(False)
             self.ui.comboBox_11.setVisible(False)
             
-            self.ui.comboBox_10.clear()
-            if not [self.ui.comboBox_10.itemText(i) for i in range(self.ui.comboBox_10.count())]: 
-                self.ui.comboBox_10.addItems(["<--Не выбран-->", "Задолжность по группе", "Наполнение группы"])
+            # self.ui.comboBox_10.clear()
+            # if not [self.ui.comboBox_10.itemText(i) for i in range(self.ui.comboBox_10.count())]: 
+            #     self.ui.comboBox_10.addItems(["<--Не выбран-->", "Задолжность по группе", "Наполнение группы"])
             
             self.ui.lineEdit_8.setVisible(True)
             self.ui.lineEdit_8.setText("Специальность")
@@ -2663,9 +2663,9 @@ class ChangePage2(QtWidgets.QWidget):
             self.ui.lineEdit_17.setVisible(False)
             self.ui.comboBox_11.setVisible(False)
             
-            self.ui.comboBox_10.clear()
-            if not [self.ui.comboBox_10.itemText(i) for i in range(self.ui.comboBox_10.count())]: 
-                self.ui.comboBox_10.addItems(["<--Не выбран-->", "Карточка студента", "Справка об обучении"])
+            # self.ui.comboBox_10.clear()
+            # if not [self.ui.comboBox_10.itemText(i) for i in range(self.ui.comboBox_10.count())]: 
+            #     self.ui.comboBox_10.addItems(["<--Не выбран-->", "Карточка студента", "Справка об обучении"])
             
             self.ui.lineEdit_8.setVisible(True)
             self.ui.lineEdit_8.setText("Группа")
@@ -2725,7 +2725,7 @@ class ChangePage2(QtWidgets.QWidget):
                 count += 1
                 
         elif self.ui.comboBox_7.currentText() == "Приказы":
-            self.ui.comboBox_10.clear()
+            # self.ui.comboBox_10.clear()
             
             self.ui.lineEdit_17.setVisible(False)
             self.ui.comboBox_11.setVisible(False)
@@ -2766,7 +2766,7 @@ class ChangePage2(QtWidgets.QWidget):
                 count += 1
                 
         elif self.ui.comboBox_7.currentText() == "Архив":
-            self.ui.comboBox_10.clear()
+            # self.ui.comboBox_10.clear()
             
             self.ui.lineEdit_17.setVisible(False)
             self.ui.comboBox_11.setVisible(False)
